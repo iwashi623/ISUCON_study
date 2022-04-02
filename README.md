@@ -34,3 +34,5 @@ ISUCONの参考記事まとめ
 3 rows in set (0.01 sec)
 
  ```
+ 　
+  - [pt-query-digest](https://nishinatoshiharu.com/percona-slowquerylog/)_
