@@ -6,6 +6,11 @@ ISUCONの参考記事まとめ
  ```
  例）sudo find /  -name "default.conf"
  ```
+ 
+ - systemctlでstatus確認
+ ```
+ sudo systemctl status nginx.service
+ ```
  - [alpのインストールとnginxのログ設定](https://nishinatoshiharu.com/install-alp-to-nginx/)
  ```
  過去ログ削除と再起動
