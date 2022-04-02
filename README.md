@@ -7,3 +7,5 @@ ISUCONの参考記事まとめ
  過去ログ削除と再起動
  sudo rm /var/log/nginx/access.log && sudo systemctl reload nginx
  ```
+ 
+ - https://github.com/Nagarei/isucon11-qualify-test/issues/1#issuecomment-912392530
