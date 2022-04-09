@@ -1,6 +1,9 @@
 # ISUCON_study
 ISUCONの参考記事まとめ
 
+## GitHubに公開鍵登録
+ - https://qiita.com/shizuma/items/2b2f873a0034839e47ce
+
 ## サーバーの状態把握
  - CPU
  ```
