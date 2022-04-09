@@ -4,6 +4,8 @@ ISUCONの参考記事まとめ
 ## サーバーの状態把握
  - CPU
  ```
+  $lscpu
+  または、
   $ cat /proc/cpuinfo
  ```
  
