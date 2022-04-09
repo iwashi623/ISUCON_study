@@ -1,6 +1,22 @@
 # ISUCON_study
 ISUCONの参考記事まとめ
 
+## サーバーの状態把握
+ - CPU
+ ```
+  $ cat /proc/cpuinfo
+ ```
+ 
+ - メモリ
+ ```
+  $ free -h
+ ```
+ 
+ - サービス
+ ```
+  $ systemctl list units --type=service --state=running 
+ ```
+
 ## 初手
  - file名で検索
  ```
