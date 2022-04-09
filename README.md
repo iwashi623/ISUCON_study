@@ -14,7 +14,7 @@ ISUCONの参考記事まとめ
  
  - サービス
  ```
-  $ systemctl list units --type=service --state=running 
+  $ systemctl list units --type=service
  ```
 
 ## 初手
