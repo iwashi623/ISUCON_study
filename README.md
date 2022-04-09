@@ -18,6 +18,11 @@ ISUCONの参考記事まとめ
  ```
 
 ## 初手
+ - htopインストール
+ `shift + m`でメモリ使用順、`shift + P`でCPU使用順
+ ```
+  $ sudo apt install htop
+ ```
  - file名で検索
  ```
  例）sudo find /  -name "default.conf"
