@@ -1,5 +1,6 @@
 # ISUCON_study
-ISUCONの参考記事まとめ
+ISUCONの参考記事まとめ。
+コマンドはUbuntu環境。
 
 ## GitHubに公開鍵登録
 ```
