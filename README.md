@@ -54,6 +54,8 @@ ISUCONの参考記事まとめ。
  # パスの通っているディレクトリにalpをインストール
  $ sudo install ./alp /usr/local/bin
  
+ ログローテート
+ # echo -n "" > /var/log/nginx/access.log && sudo chmod 777 /var/log/nginx/access.log
  過去ログ削除と再起動
  $ sudo rm /var/log/nginx/access.log && sudo systemctl reload nginx
  
