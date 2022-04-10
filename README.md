@@ -41,6 +41,8 @@ ISUCONの参考記事まとめ
  - systemctlでstatus確認
  ```
  sudo systemctl status nginx.service
+ 
+ ### nginx
  ```
  - [alpのインストールとnginxのログ設定](https://nishinatoshiharu.com/install-alp-to-nginx/)
  ```
@@ -50,6 +52,7 @@ ISUCONの参考記事まとめ
  
  - https://github.com/Nagarei/isucon11-qualify-test/issues/1#issuecomment-912392530
 
+### MySQL
  - MySQLのスローログ設定
  [参考](https://nishinatoshiharu.com/mysql-slow-query-log/)
  ```
