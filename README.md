@@ -46,8 +46,13 @@ ISUCONの参考記事まとめ
 ### nginx
  - [alpのインストールとnginxのログ設定](https://nishinatoshiharu.com/install-alp-to-nginx/)
  ```
+ $ wget https://github.com/tkuchiki/alp/releases/download/v0.3.1/alp_linux_amd64.zip
+ $ unzip alp_linux_amd64.zip
+
+ # パスの通っているディレクトリにalpをインストール
+ $ sudo install ./alp /usr/local/bin
  過去ログ削除と再起動
- sudo rm /var/log/nginx/access.log && sudo systemctl reload nginx
+ $ sudo rm /var/log/nginx/access.log && sudo systemctl reload nginx
  ```
  
  - https://github.com/Nagarei/isucon11-qualify-test/issues/1#issuecomment-912392530
