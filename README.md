@@ -77,5 +77,17 @@ ISUCONの参考記事まとめ
 3 rows in set (0.01 sec)
 
  ```
+ 
+  - ログローテート
+  ```
+  $ now=`date +%Y%m%d-%H%M%S` && sudo mv /var/log/mysql/slow.log /var/log/mysql/slow.log.$now && sudo mysqladmin flush-logs
+  ```
  　
-  - [pt-query-digest](https://nishinatoshiharu.com/percona-slowquerylog/)_
+  - [pt-query-digest](https://nishinatoshiharu.com/percona-slowquerylog/)
+  ```
+  $ wget https://www.percona.com/downloads/percona-toolkit/3.0.10/binary/debian/xenial/x86_64/percona-toolkit_3.0.10-1.xenial_amd64.deb
+  $ sudo apt-get install libdbd-mysql-perl libdbi-perl libio-socket-ssl-perl libnet-ssleay-perl libterm-readkey-perl
+  $ sudo dpkg -i percona-toolkit_3.0.10-1.xenial_amd64.deb
+  
+  $ sudo pt-query-digest /var/log/mysql/slow.log
+  ```
