@@ -46,6 +46,7 @@ ISUCONの参考記事まとめ。
 
 ### nginx
  - [alpのインストールとnginxのログ設定](https://nishinatoshiharu.com/install-alp-to-nginx/)
+ - [色々まとまっている](https://kazegahukeba.hatenablog.com/entry/2019/09/13/015113)
  ```
  $ wget https://github.com/tkuchiki/alp/releases/download/v0.3.1/alp_linux_amd64.zip
  $ unzip alp_linux_amd64.zip
