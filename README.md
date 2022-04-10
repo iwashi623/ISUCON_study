@@ -51,8 +51,11 @@ ISUCONの参考記事まとめ
 
  # パスの通っているディレクトリにalpをインストール
  $ sudo install ./alp /usr/local/bin
+ 
  過去ログ削除と再起動
  $ sudo rm /var/log/nginx/access.log && sudo systemctl reload nginx
+ 
+ $ alp -f /var/log/nginx/access.log
  ```
  
  - https://github.com/Nagarei/isucon11-qualify-test/issues/1#issuecomment-912392530
