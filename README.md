@@ -28,6 +28,15 @@ ISUCONの参考記事まとめ。
   $ systemctl list-units --type=service
  ```
 
+## シンボリックリンク
+```
+貼る　　　　　　　参照先ディレクトリ                        置く場所　　　
+ln -s /home/isucon/private_isu/webapp/etc /etc/mysql/isu-mysql
+
+剥がす.  置き場所
+unlink /etc/mysql/isu-mysql
+```
+
 ## 初手
  - htopインストール
  `shift + m`でメモリ使用順、`shift + P`でCPU使用順
