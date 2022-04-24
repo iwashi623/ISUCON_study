@@ -112,3 +112,19 @@ unlink /etc/mysql/isu-mysql
   
   $ sudo pt-query-digest /var/log/mysql/slow.log
   ```
+  
+  ## INDEXを貼る
+  ```
+  $ mysql
+  ## commentsテーブルのINDEX確認
+  show index from comments;
+  
+  ## INDEX追加
+  ALTER TABLE テーブル名 ADD INDEX インデックス名(カラム名);
+  
+  ## 複合INDEX追加
+  ALTER TABLE posts ADD INDEX index_posts_on_created_at_updated_at(created_at, updated_at);
+  
+  ## INDEX削除
+  ALTER TABLE テーブル名 DROP INDEX インデックス名;
+  ```
