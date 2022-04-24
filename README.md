@@ -25,7 +25,7 @@ ISUCONの参考記事まとめ。
  
  - サービス
  ```
-  $ systemctl list units --type=service
+  $ systemctl list-units --type=service
  ```
 
 ## 初手
