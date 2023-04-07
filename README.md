@@ -4,7 +4,7 @@ ISUCONの参考記事まとめ。
 
 ## GitHubに公開鍵登録
 ```
- $ git config --global user.name "SardineTa23"
+ $ git config --global user.name "iwashi623"
  $ git config --global user.email GitHubメールアドレス
 ```
  - https://qiita.com/shizuma/items/2b2f873a0034839e47ce
