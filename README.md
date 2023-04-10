@@ -133,3 +133,9 @@ unlink /etc/mysql/isu-mysql
   ## INDEX削除
   ALTER TABLE テーブル名 DROP INDEX インデックス名;
   ```
+  
+  ## log
+  ```
+  # systemd 
+  $ sudo tail -n 1000 /var/log/syslog | grep hogehoge
+  ```
