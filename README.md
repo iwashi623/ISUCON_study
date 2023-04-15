@@ -69,8 +69,8 @@ unlink /etc/mysql/isu-mysql
  $ sudo rm /var/log/nginx/access.log && sudo systemctl reload nginx
  
  $ alp -f /var/log/nginx/access.log
- パターンで絞り込み
- $ alp -f /var/log/nginx/access.log --aggregates='posts/[0-9]+' --sum -r
+ パターンで絞り込み(ここでは/posts/{post_id}と/@{hogehoge}を絞り込み)
+ $ alp -f /var/log/nginx/access.log --aggregates='posts/[0-9]+,/@\w+'' --sum -r
  ```
  
  - https://github.com/Nagarei/isucon11-qualify-test/issues/1#issuecomment-912392530
