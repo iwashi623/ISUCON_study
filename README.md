@@ -73,6 +73,7 @@ unlink /etc/mysql/isu-mysql
  $ alp -f /var/log/nginx/access.log
  パターンで絞り込み(ここでは/posts/{post_id}と/@{hogehoge}を絞り込み)
  $ alp -f /var/log/nginx/access.log --aggregates='posts/[0-9]+,/@\w+'' --sum -r
+ $ alp --sum -r -f /var/log/nginx/access.log --aggregates='/api/estate/[0-9]+,/api/chair/[0-9]+,/api/recommended_estate/[0-9]+' > hoge.txt
  ```
  
  - https://github.com/Nagarei/isucon11-qualify-test/issues/1#issuecomment-912392530
