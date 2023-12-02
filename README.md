@@ -105,30 +105,37 @@ unlink /etc/mysql/isu-mysql
  sudo systemctl status nginx.service
  ```
 
-### nginx
+## Nginx
+### alp
+ - https://github.com/tkuchiki/alp
  - [alpのインストールとnginxのログ設定](https://nishinatoshiharu.com/install-alp-to-nginx/)
  - [色々まとまっている](https://kazegahukeba.hatenablog.com/entry/2019/09/13/015113)
- ```
- $ wget https://github.com/tkuchiki/alp/releases/download/v0.3.1/alp_linux_amd64.zip
- $ unzip alp_linux_amd64.zip
+```
+$ wget https://github.com/tkuchiki/alp/releases/download/v1.0.21/alp_linux_amd64.zip
+$ unzip alp_linux_amd64.zip
+$ sudo install ./alp /usr/local/bin
+```
 
- # パスの通っているディレクトリにalpをインストール
- $ sudo install ./alp /usr/local/bin
- 
- ログローテート
- # echo -n "" > /var/log/nginx/access.log && sudo chmod 777 /var/log/nginx/access.log
- 過去ログ削除と再起動
- $ sudo rm /var/log/nginx/access.log && sudo systemctl reload nginx
- 
- $ alp -f /var/log/nginx/access.log
- パターンで絞り込み(ここでは/posts/{post_id}と/@{hogehoge}を絞り込み)
- $ alp -f /var/log/nginx/access.log --aggregates='posts/[0-9]+,/@\w+'' --sum -r
- $ alp --sum -r -f /var/log/nginx/access.log --aggregates='/api/estate/[0-9]+,/api/chair/[0-9]+,/api/recommended_estate/[0-9]+' > hoge.txt
- ```
- 
+ログのローテーション
+```
+# echo -n "" > /var/log/nginx/access.log && sudo chmod 777 /var/log/nginx/access.log
+過去ログ削除と再起動
+$ sudo rm /var/log/nginx/access.log && sudo systemctl reload nginx
+```
+
+実行
+```
+$ alp -f /var/log/nginx/access.log
+パターンで絞り込み(ここでは/posts/{post_id}と/@{hogehoge}を絞り込み)
+$ alp -f /var/log/nginx/access.log --aggregates='posts/[0-9]+,/@\w+'' --sum -r
+$ alp --sum -r -f /var/log/nginx/access.log --aggregates='/api/estate/[0-9]+,/api/chair/[0-9]+,/api/recommended_estate/[0-9]+' > hoge.txt
+```
+
+参考
  - https://github.com/Nagarei/isucon11-qualify-test/issues/1#issuecomment-912392530
 
-### MySQL
+## MySQL
+### pt-query-digest
  - MySQLのスローログ設定
  [参考](https://nishinatoshiharu.com/mysql-slow-query-log/)
  ```
@@ -153,7 +160,6 @@ unlink /etc/mysql/isu-mysql
 3 rows in set (0.01 sec)
 
  ```
- 
   - ログローテート
   ```
   $ now=`date +%Y%m%d-%H%M%S` && sudo mv /var/log/mysql/slow.log /var/log/mysql/slow.log.$now && sudo mysqladmin flush-logs
@@ -173,7 +179,7 @@ unlink /etc/mysql/isu-mysql
   $ sudo pt-query-digest /var/log/mysql/slow.log
   ```
   
-  ## INDEXを貼る
+  ### INDEXを貼る
   ```
   $ mysql
   ## commentsテーブルのINDEX確認
