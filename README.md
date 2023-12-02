@@ -78,7 +78,7 @@ $ vi ~/.gitconfig
   $ systemctl list-units --type=service
  ```
 
-## シンボリックリンク
+### シンボリックリンク
 ```
 貼る　　　　　　　参照先ディレクトリ                        置く場所　　　
 ln -s /home/isucon/private_isu/webapp/etc /etc/mysql/isu-mysql
@@ -87,7 +87,7 @@ ln -s /home/isucon/private_isu/webapp/etc /etc/mysql/isu-mysql
 unlink /etc/mysql/isu-mysql
 ```
 
-## 初手
+### 初手
  - htopインストール
  ```
   $ sudo apt install htop
@@ -105,6 +105,12 @@ unlink /etc/mysql/isu-mysql
  sudo systemctl status nginx.service
  ```
 
+### アプリをrestartしたい時
+```
+sudo systemctl disable --now isucholar.go.service
+sudo systemctl enable --now isucholar.go.service
+sudo systemctl status isucholar.go.service
+```
 ## Nginx
 ### alp
  - https://github.com/tkuchiki/alp
