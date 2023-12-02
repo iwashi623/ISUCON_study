@@ -1,6 +1,5 @@
 # isucon-my-sheet
-ISUCONの参考記事まとめ。
-コマンドはUbuntu環境。
+ISUCONの練習で使ったコマンドや参考になった記事のまとめ
 
 ## 環境構築
 ### sshしようとしたときに使った秘密鍵で、BadPermisshionのエラーが出た時
