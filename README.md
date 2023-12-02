@@ -87,23 +87,28 @@ ln -s /home/isucon/private_isu/webapp/etc /etc/mysql/isu-mysql
 unlink /etc/mysql/isu-mysql
 ```
 
-### 初手
- - htopインストール
- ```
-  $ sudo apt install htop
- ```
+### 環境把握
+- htopインストール
+```
+$ sudo apt install htop
+```
 `shift + m`でメモリ使用順、`shift + P`でCPU使用順でソートできる
 
 
- - file名で検索
+- file名で検索
+```
+例）sudo find /  -name "default.conf"
  ```
- 例）sudo find /  -name "default.conf"
- ```
+
+- systemdの設定ファイルを探す
+```
+$ sudo find / -type f -name "*isucari*"
+```
  
- - systemctlでstatus確認
- ```
- sudo systemctl status nginx.service
- ```
+- systemctlでstatus確認
+```
+sudo systemctl status nginx.service
+```
 
 ### アプリをrestartしたい時
 ```
