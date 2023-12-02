@@ -1,4 +1,4 @@
-# ISUCON_study
+# isucon-my-sheet
 ISUCONの参考記事まとめ。
 コマンドはUbuntu環境。
 
