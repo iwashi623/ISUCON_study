@@ -16,6 +16,26 @@ https://github.com/iwashi623.keys
 $ mkdir .ssh && touch ~/.ssh/authorized_keys
 ```
 
+### ssh-agentとローカルの秘密鍵を利用して、isuconサーバーからGitHubの認証を通す
+```
+以下、ローカル
+--------------------------------------
+**秘密鍵をssh-agentに登録**
+$ ssh-add -k ~/.ssh/使いたい秘密鍵
+**秘密鍵が登録されたかの確認**
+$ ssh-add -l
+**ssh-agentを使ってインスタンスへssh**
+ssh -A  -i ~/.ssh/使いたい秘密鍵 isucon@<インスタンスIP>
+
+以下、インスタンス内
+--------------------------------------
+成功すると以下のように表示される
+$ ssh git@github.com
+PTY allocation request failed on channel 0
+Hi iwashi623! You've successfully authenticated, but GitHub does not provide shell access.
+Connection to github.com closed.
+```
+
 ## GitHubに公開鍵登録
 ```
  $ git config --global user.name "iwashi623"
