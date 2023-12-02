@@ -203,6 +203,7 @@ $ alp --sum -r -f /var/log/nginx/access.log --aggregates='/api/estate/[0-9]+,/ap
   
   ## log
   ```
+$ journalctl -xe | grep  isucari
   # systemd 
   $ sudo tail -n 1000 /var/log/syslog | grep hogehoge
   ```
