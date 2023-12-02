@@ -2,6 +2,20 @@
 ISUCONの参考記事まとめ。
 コマンドはUbuntu環境。
 
+## 環境構築
+### sshしようとしたときに使った秘密鍵で、BadPermisshionのエラーが出た時
+秘密鍵のパーミッションを400にする
+```
+$ chmod 400 ~/.ssh/秘密鍵名.pem
+```
+
+### isuconユーザーでローカルからSSHする
+isuconユーザーの~/.ssh/authorized_keysにGithubに登録している公開鍵を追加
+https://github.com/iwashi623.keys
+```
+$ mkdir .ssh && touch ~/.ssh/authorized_keys
+```
+
 ## GitHubに公開鍵登録
 ```
  $ git config --global user.name "iwashi623"
