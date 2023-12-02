@@ -34,6 +34,7 @@ $ ssh git@github.com
 PTY allocation request failed on channel 0
 Hi iwashi623! You've successfully authenticated, but GitHub does not provide shell access.
 Connection to github.com closed.
+```
 
 ### GitHubに公開鍵登録(新しい秘密を作りたい時以外は不要)
  - https://qiita.com/shizuma/items/2b2f873a0034839e47ce
