@@ -34,14 +34,30 @@ $ ssh git@github.com
 PTY allocation request failed on channel 0
 Hi iwashi623! You've successfully authenticated, but GitHub does not provide shell access.
 Connection to github.com closed.
-```
 
-## GitHubに公開鍵登録
+### GitHubに公開鍵登録(新しい秘密を作りたい時以外は不要)
+ - https://qiita.com/shizuma/items/2b2f873a0034839e47ce
 ```
  $ git config --global user.name "iwashi623"
  $ git config --global user.email GitHubメールアドレス
 ```
- - https://qiita.com/shizuma/items/2b2f873a0034839e47ce
+
+### Gitコマンドのエイリアスを作成
+```
+$ vi ~/.gitconfig
+
+---------以下を貼り付け---------
+[user]
+	name = iwashi623
+	email = <githubメールアドレス>
+
+[alias]
+    s = status
+    ci = commit
+    l = log --oneline
+    co = checkout
+    br = branch
+```
 
 ## サーバーの状態把握
  - CPU
