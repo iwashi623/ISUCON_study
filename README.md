@@ -110,6 +110,27 @@ $ sudo find / -type f -name "*isucari*"
 sudo systemctl status nginx.service
 ```
 
+### Systemdに環境変数を渡す
+```
+$ vi /etc/systemd/system/isucari.golang.service
+[Unit]
+Description=My Go Application
+
+[Service]
+ExecStart=/path/to/your/go-binary
+Environment="VAR1=value1" "VAR2=value2" <- ここを編集する
+Restart=always
+User=username
+Group=groupname
+
+[Install]
+WantedBy=multi-user.target
+
+
+
+$ sudo systemctl daemon-reload && sudo systemctl start isucari.golang && sudo systemctl enable isucari.golang
+```
+
 ### アプリをrestartしたい時
 ```
 sudo systemctl disable --now isucholar.go.service
