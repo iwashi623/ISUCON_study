@@ -103,6 +103,9 @@ $ sudo apt install htop
 - systemdの設定ファイルを探す
 ```
 $ sudo find / -type f -name "*isucari*"
+
+直接コマンドで設定ファイルも見れる
+$ sudo systemctl cat isucari.go.service
 ```
  
 - systemctlでstatus確認
