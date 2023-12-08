@@ -281,3 +281,19 @@ $ journalctl -xe | grep  isucari
 # systemd
 $ sudo tail -n 1000 /var/log/syslog | grep hogehoge
 ```
+
+## (練習用)Goのバージョンを変える
+```
+goのパスを確認しておく
+$ which go
+$ printenv | grep GOROOT
+
+goのパッケージを取ってくる
+$ wget https://go.dev/dl/go1.21.5.linux-amd64.tar.gz
+
+既存のGo削除
+$ rm -rf /home/isucon/local/go
+
+取ってきたGoのパッケージを解答してGoコマンドが読みに行くPathに展開する
+$ tar -C /home/isucon/local/ -xzf go1.21.5.linux-amd64.tar.gz
+```
