@@ -107,13 +107,12 @@ unlink /etc/mysql/isu-mysql
 ```
 $ sudo apt install htop
 ```
+`shift + m`でメモリ使用順、`shift + P`で CPU 使用順でソートできる
 
 - 開いているPortの確認
 ```
 $ sudo netstat -anp
 ```
-
-`shift + m`でメモリ使用順、`shift + P`で CPU 使用順でソートできる
 
 - file 名で検索
 ```
