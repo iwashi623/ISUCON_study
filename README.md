@@ -69,7 +69,6 @@ $ vi ~/.gitconfig
 ```
 
 ## サーバーの状態把握
-
 - CPU
 
 ```
@@ -92,13 +91,21 @@ $ vi ~/.gitconfig
 ```
 
 ### シンボリックリンク
-
 ```
 貼る　　　　　　　参照先ディレクトリ                        置く場所　　　
 ln -s /home/isucon/private_isu/webapp/etc /etc/mysql/isu-mysql
 
 剥がす.  置き場所
 unlink /etc/mysql/isu-mysql
+```
+
+### scp
+```
+ローカルのファイルを転送
+$ scp webapp/mysql/db/2_DummyChairData.sql isucon@<IPアドレス>:/home/isucon/isuumo/webapp/mysql/db/
+
+リモートのディレクトリを転送
+$ scp -r isucon@<IPアドレス>:/home/isucon/isuumo/webapp/mysql/db webapp/mysql/ 
 ```
 
 ### 環境把握
