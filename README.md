@@ -218,6 +218,7 @@ sudo vi /etc/mysql/my.cnf
  slow_query_log = 1
  slow_query_log_file = /var/log/mysql/slow.log
  long_query_time = 0
+　　disable-log-bin
 ~~~
 
 sudo service mysql restart
