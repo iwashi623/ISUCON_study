@@ -57,8 +57,8 @@ $ vi ~/.gitconfig
 
 ---------以下を貼り付け---------
 [user]
-	name = iwashi623
-	email = <githubメールアドレス>
+    name = iwashi623
+    email = <githubメールアドレス>
 
 [alias]
     s = status
