@@ -262,6 +262,9 @@ $ sudo pt-query-digest /var/log/mysql/slow.log
 
 ```
 $ mysql
+## tableの詳細確認
+show create table table_name;
+
 ## commentsテーブルのINDEX確認
 show index from comments;
 
