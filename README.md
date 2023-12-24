@@ -298,6 +298,6 @@ $ wget https://go.dev/dl/go1.21.5.linux-amd64.tar.gz
 既存のGo削除
 $ rm -rf /home/isucon/local/go
 
-取ってきたGoのパッケージを解答してGoコマンドが読みに行くPathに展開する
+取ってきたGoのパッケージを解凍してGoコマンドが読みに行くPathに展開する
 $ tar -C /home/isucon/local/ -xzf go1.21.5.linux-amd64.tar.gz
 ```
