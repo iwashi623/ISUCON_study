@@ -161,6 +161,12 @@ WantedBy=multi-user.target
 $ sudo systemctl daemon-reload && sudo systemctl start isucari.golang && sudo systemctl enable isucari.golang
 ```
 
+### systemdの設定ファイルを書き換えたら
+```
+設定ファイルの読み込み
+$ systemctl daemon-reload
+```
+
 ### アプリを restart したい時
 
 ```
