@@ -170,6 +170,11 @@ sudo systemctl status isucholar.go.service
 ```
 
 ## Nginx
+### 設定確認
+```
+# エラーログなどを確認できる
+sudo nginx -t
+```
 
 ### alp
 
