@@ -217,6 +217,11 @@ $ alp --sum -r -f /var/log/nginx/access.log --aggregates='/api/estate/[0-9]+,/ap
 
 ## MySQL
 
+### スキーマの確認
+```
+$ sudo mysqldump --compact --no-data isuconp | grep -v "^SET" | grep -v "^/\*\!" | perl -ple 's@CREATE TABLE @\nCREATE TABLE @g'
+```
+
 ### pt-query-digest
 
 - MySQL のスローログ設定
