@@ -294,6 +294,29 @@ ALTER TABLE posts ADD INDEX index_posts_on_created_at_updated_at(created_at, upd
 ALTER TABLE テーブル名 DROP INDEX インデックス名;
 ```
 
+### DB分割
+#### 移行先ホスト
+1. ユーザーと権限の追加
+```sql
+-- ユーザーの作成
+CREATE USER `isucon`@`172.31.%` IDENTIFIED BY 'isucon';
+-- 権限の追加
+GRANT ALL PRIVILEGES ON `isuumo`.* TO `isucon`@`172.31.%`;
+
+-- DBのユーザー一覧取得
+SELECT user, host FROM mysql.user;
+-- DBのユーザー権限確認('isucon'@'172.31.%'はユーザー名)
+SHOW GRANTS FOR 'isucon'@'172.31.%';
+```
+2. bind-addressを0.0.0.0にする
+```
+$ sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf
+
+# Instead of skip-networking the default is now to listen only on
+# localhost which is more compatible and is not less secure.
+bind-address            = 0.0.0.0 <- こうする
+```
+
 ## log
 
 ```
