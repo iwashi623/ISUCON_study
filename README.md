@@ -175,7 +175,7 @@ sudo systemctl enable --now isucholar.go.service
 sudo systemctl status isucholar.go.service
 ```
 
-## Nginx
+## nginx
 ### 設定確認
 ```
 # エラーログなどを確認できる
@@ -214,6 +214,51 @@ $ alp --sum -r -f /var/log/nginx/access.log --aggregates='/api/estate/[0-9]+,/ap
 参考
 
 - https://github.com/Nagarei/isucon11-qualify-test/issues/1#issuecomment-912392530
+
+### レスポンスをキャッシュする
+[参考](https://github.com/oystersjp/yubikega-isucon10-qualify/commit/2868646c550bd3e8680e38aa5aa6579986dccf03)
+```
+proxy_cache_path /var/cache/nginx keys_zone=zone1:1m max_size=100m inactive=5m;
+
+server {
+    root /home/isucon/isucon10-qualify/webapp/public;
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    location ~ ^/api/estate/[0-9]+$ {
+            proxy_cache       zone1;
+            proxy_cache_key   $scheme$proxy_host$uri$is_args$args;
+            proxy_cache_valid 200 30s;
+            proxy_pass http://localhost:1323;
+    }
+
+    location /api/estate/search {
+            proxy_cache       zone1;
+            proxy_cache_key   $scheme$proxy_host$uri$is_args$args;
+            proxy_cache_valid 200 30s;
+            proxy_pass http://localhost:1323;
+    }
+
+    location /api {
+            proxy_pass http://localhost:1323;
+    }
+
+    location /initialize {
+            proxy_pass http://localhost:1323;
+    }
+
+    location / {
+            root /www/data;
+    }
+}
+```
+
+### 問答無用で500エラーを返す
+```
+if ($http_user_agent ~* ^isubot ) {
+  return 503;
+}
+```
 
 ## MySQL
 
