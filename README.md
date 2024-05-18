@@ -295,7 +295,7 @@ ALTER TABLE テーブル名 DROP INDEX インデックス名;
 ```
 
 ### DB分割
-#### 移行先ホスト
+#### 移行先DBホスト
 1. ユーザーと権限の追加
 ```sql
 -- ユーザーの作成
@@ -316,6 +316,13 @@ $ sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf
 # localhost which is more compatible and is not less secure.
 bind-address            = 0.0.0.0 <- こうする
 ```
+
+#### アプリケーションホスト
+```bash
+// 環境変数設定を確認
+$ sudo systemctl cat isuumo.go
+```
+DBのHostの設定をDBのHostにしたいサーバーのPrivateIPアドレスに切り替える｡アプリで使っている箇所があればそちらも切り替える
 
 ## log
 
