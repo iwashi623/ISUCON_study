@@ -231,10 +231,13 @@ $ sudo mysqldump --compact --no-data isuconp | grep -v "^SET" | grep -v "^/\*\!"
 sudo vi /etc/mysql/my.cnf
 ~~~
 [mysqld]
- slow_query_log = 1
+  slow_query_log = 1
  slow_query_log_file = /var/log/mysql/slow.log
  long_query_time = 0
-　　disable-log-bin
+ disable-log-bin
+ innodb_buffer_pool_size = 1GB # ディスクイメージをメモリ上にバッファさせる値をきめる設定値
+ innodb_flush_log_at_trx_commit = 2 # 1に設定するとトランザクション単位でログを出力するが 2 を指定すると1秒間に1回ログファイルに出力するようになる
+ innodb_flush_method = O_DIRECT # データファイル、ログファイルの読み書き方式を指定する(実験する価値はある)
 ~~~
 
 sudo service mysql restart
