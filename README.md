@@ -324,6 +324,18 @@ $ sudo systemctl cat isuumo.go
 ```
 DBのHostの設定をDBのHostにしたいサーバーのPrivateIPアドレスに切り替える｡アプリで使っている箇所があればそちらも切り替える
 
+## pprof
+### 導入
+1. [こんな感じにアプリに入れる]([https://github.com/hoge-times/isucon9-qualify-20240217/pull/5)
+2. ベンチ実行後､Initializeが終わったタイミングで以下のコマンド事項
+   ```
+    $ go tool pprof http://localhost:6060/debug/pprof/profile?seconds=30
+   ```
+3. ローカルでファイルを展開する
+   ```
+    $ go tool pprof -http 127.0.0.1:9090 ./pprof.isucari.samples.cpu.002.pb.gz
+   ```
+
 ## log
 
 ```
