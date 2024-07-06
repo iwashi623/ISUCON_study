@@ -358,7 +358,7 @@ GRANT ALL PRIVILEGES ON `database_name`.* TO 'isucon'@'%';
 -- DBのユーザー一覧取得
 SELECT user, host FROM mysql.user;
 -- DBのユーザー権限確認('isucon'@'172.31.%'はユーザー名)
-SHOW GRANTS FOR 'isucon'@'172.31.%';
+SHOW GRANTS FOR 'isucon'@'%';
 ```
 2. bind-addressを0.0.0.0にする
 ```
