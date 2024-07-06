@@ -174,6 +174,10 @@ sudo systemctl disable --now isucholar.go.service
 sudo systemctl enable --now isucholar.go.service
 sudo systemctl status isucholar.go.service
 ```
+### ローカルホストから､指定したホスト上でコマンドを実行して､結果をクリップボードへ
+```
+ssh -A i1 "cd webapp && make nalp" | pbcopy
+```
 
 ## nginx
 ### 設定確認
