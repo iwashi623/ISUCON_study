@@ -351,9 +351,9 @@ ALTER TABLE テーブル名 DROP INDEX インデックス名;
 1. ユーザーと権限の追加
 ```sql
 -- ユーザーの作成
-CREATE USER `isucon`@`172.31.%` IDENTIFIED BY 'isucon';
+CREATE USER 'isucon'@'%' IDENTIFIED BY 'isucon';
 -- 権限の追加
-GRANT ALL PRIVILEGES ON `isuumo`.* TO `isucon`@`172.31.%`;
+GRANT ALL PRIVILEGES ON `database_name`.* TO 'isucon'@'%';
 
 -- DBのユーザー一覧取得
 SELECT user, host FROM mysql.user;
