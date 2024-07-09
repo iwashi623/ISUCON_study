@@ -280,7 +280,8 @@ $ sudo mysqldump --compact --no-data isuconp | grep -v "^SET" | grep -v "^/\*\!"
 sudo vi /etc/mysql/my.cnf
 ~~~
 [mysqld]
-  slow_query_log = 1
+ max_connections=10000
+ slow_query_log = 1
  slow_query_log_file = /var/log/mysql/slow.log
  long_query_time = 0
  disable-log-bin
