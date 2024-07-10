@@ -7,7 +7,7 @@ ISUCON の練習で使ったコマンドや参考になった記事のまとめ
 ### ssh しようとしたときに使った秘密鍵で、BadPermisshion のエラーが出た時
 
 秘密鍵のパーミッションを 400 にする
-```
+```bash
 $ chmod 400 ~/.ssh/秘密鍵名.pem
 ```
 
@@ -16,13 +16,13 @@ $ chmod 400 ~/.ssh/秘密鍵名.pem
 isucon ユーザーの~/.ssh/authorized_keys に Github に登録している公開鍵を追加
 https://github.com/iwashi623.keys
 
-```
+```bash
 $ mkdir .ssh && touch ~/.ssh/authorized_keys
 ```
 
 ### ssh-agent とローカルの秘密鍵を利用して、isucon サーバーから GitHub の認証を通す
 
-```
+```bash
 以下、ローカル
 --------------------------------------
 **秘密鍵をssh-agentに登録**
@@ -45,14 +45,14 @@ Connection to github.com closed.
 
 - https://qiita.com/shizuma/items/2b2f873a0034839e47ce
 
-```
+```bash
  $ git config --global user.name "iwashi623"
  $ git config --global user.email GitHubメールアドレス
 ```
 
 ### Git コマンドのエイリアスを作成
 
-```
+```bash
 $ vi ~/.gitconfig
 
 ---------以下を貼り付け---------
@@ -71,7 +71,7 @@ $ vi ~/.gitconfig
 ## サーバーの状態把握
 - CPU
 
-```
+```bash
  $ lscpu
  または、
  $ cat /proc/cpuinfo
@@ -80,18 +80,18 @@ $ vi ~/.gitconfig
 - メモリ
   メガバイト表示、ギガバイト表示は`-g`
 
-```
+```bash
  $ free -m
 ```
 
 - サービス
 
-```
+```bash
  $ systemctl list-units --type=service
 ```
 
 ### シンボリックリンク
-```
+```bash
 貼る　　　　　　　参照先ディレクトリ                        置く場所　　　
 ln -s /home/isucon/private_isu/webapp/etc /etc/mysql/isu-mysql
 
@@ -100,7 +100,7 @@ unlink /etc/mysql/isu-mysql
 ```
 
 ### scp
-```
+```bash
 ローカルのファイルを転送
 $ scp webapp/mysql/db/2_DummyChairData.sql isucon@<IPアドレス>:/home/isucon/isuumo/webapp/mysql/db/
 
@@ -111,23 +111,23 @@ $ scp -r isucon@<IPアドレス>:/home/isucon/isuumo/webapp/mysql/db webapp/mysq
 ### 環境把握
 
 - htop インストール
-```
+```bash
 $ sudo apt install htop
 ```
 `shift + m`でメモリ使用順、`shift + P`で CPU 使用順でソートできる
 
 - 開いているPortの確認
-```
+```bash
 $ sudo netstat -anp
 ```
 
 - file 名で検索
-```
+```bash
 例）sudo find /  -name "default.conf"
 ```
 
 - systemd の設定ファイルを探す
-```
+```bash
 $ sudo find / -type f -name "*isucari*"
 
 直接コマンドで設定ファイルも見れる
@@ -135,13 +135,13 @@ $ sudo systemctl cat isucari.go.service
 ```
 
 - systemctl で status 確認
-```
+```bash
 sudo systemctl status nginx.service
 ```
 
 ### Systemd に環境変数を渡す
 
-```
+```bash
 $ vi /etc/systemd/system/isucari.golang.service
 [Unit]
 Description=My Go Application
@@ -162,26 +162,26 @@ $ sudo systemctl daemon-reload && sudo systemctl start isucari.golang && sudo sy
 ```
 
 ### systemdの設定ファイルを書き換えたら
-```
+```bash
 設定ファイルの読み込み
 $ systemctl daemon-reload
 ```
 
 ### アプリを restart したい時
 
-```
+```bash
 sudo systemctl disable --now isucholar.go.service
 sudo systemctl enable --now isucholar.go.service
 sudo systemctl status isucholar.go.service
 ```
 ### ローカルホストから､指定したホスト上でコマンドを実行して､結果をクリップボードへ
-```
+```bash
 ssh -A i1 "cd webapp && make nalp" | pbcopy
 ```
 
 ## nginx
 ### 設定確認
-```
+```bash
 # エラーログなどを確認できる
 sudo nginx -t
 ```
@@ -192,7 +192,7 @@ sudo nginx -t
 - [alp のインストールと nginx のログ設定](https://nishinatoshiharu.com/install-alp-to-nginx/)
 - [色々まとまっている](https://kazegahukeba.hatenablog.com/entry/2019/09/13/015113)
 
-```
+```bash
 user www-data;
 worker_processes auto;
 pid /run/nginx.pid;
@@ -286,7 +286,7 @@ http {
 }
 ```
 
-```
+```bash
 $ wget https://github.com/tkuchiki/alp/releases/download/v1.0.21/alp_linux_amd64.zip
 $ unzip alp_linux_amd64.zip
 $ sudo install ./alp /usr/local/bin
@@ -294,7 +294,7 @@ $ sudo install ./alp /usr/local/bin
 
 ログのローテーション
 
-```
+```bash
 $ echo -n "" > /var/log/nginx/access.log && sudo chmod 777 /var/log/nginx/access.log
 過去ログ削除と再起動
 $ sudo rm /var/log/nginx/access.log && sudo systemctl reload nginx
@@ -302,7 +302,7 @@ $ sudo rm /var/log/nginx/access.log && sudo systemctl reload nginx
 
 実行
 
-```
+```bash
 $ alp -f /var/log/nginx/access.log
 パターンで絞り込み(ここでは/posts/{post_id}と/@{hogehoge}を絞り込み)
 $ alp -f /var/log/nginx/access.log --aggregates='posts/[0-9]+,/@\w+'' --sum -r
@@ -315,7 +315,7 @@ $ alp --sum -r -f /var/log/nginx/access.log --aggregates='/api/estate/[0-9]+,/ap
 
 ### レスポンスをキャッシュする
 [参考](https://github.com/oystersjp/yubikega-isucon10-qualify/commit/2868646c550bd3e8680e38aa5aa6579986dccf03)
-```
+```bash
 proxy_cache_path /var/cache/nginx keys_zone=zone1:1m max_size=100m inactive=5m;
 
 server {
@@ -352,7 +352,7 @@ server {
 ```
 
 ### 問答無用で500エラーを返す
-```
+```bash
 if ($http_user_agent ~* ^isubot ) {
   return 503;
 }
@@ -361,7 +361,7 @@ if ($http_user_agent ~* ^isubot ) {
 ## MySQL
 
 ### スキーマの確認
-```
+```bash
 $ sudo mysqldump --compact --no-data isuconp | grep -v "^SET" | grep -v "^/\*\!" | perl -ple 's@CREATE TABLE @\nCREATE TABLE @g'
 ```
 
@@ -370,7 +370,7 @@ $ sudo mysqldump --compact --no-data isuconp | grep -v "^SET" | grep -v "^/\*\!"
 - MySQL のスローログ設定
   [参考](https://nishinatoshiharu.com/mysql-slow-query-log/)
 
-```
+```bash
 sudo vi /etc/mysql/my.cnf
 ~~~
 [mysqld]
@@ -402,7 +402,7 @@ mysql> show variables like 'slow%';
 
 - ログローテート
 
-```
+```bash
 $ now=`date +%Y%m%d-%H%M%S` && sudo mv /var/log/mysql/slow.log /var/log/mysql/slow.log.$now && sudo mysqladmin flush-logs
 ```
 
@@ -410,7 +410,7 @@ $ now=`date +%Y%m%d-%H%M%S` && sudo mv /var/log/mysql/slow.log /var/log/mysql/sl
 
 - [pt-query-digest](https://nishinatoshiharu.com/percona-slowquerylog/)
 
-```
+```bash
 $ wget https://www.percona.com/downloads/percona-toolkit/3.0.10/binary/debian/xenial/x86_64/percona-toolkit_3.0.10-1.xenial_amd64.deb
 $ sudo apt-get install libdbd-mysql-perl libdbi-perl libio-socket-ssl-perl libnet-ssleay-perl libterm-readkey-perl
 $ sudo dpkg -i percona-toolkit_3.0.10-1.xenial_amd64.deb
@@ -425,7 +425,7 @@ $ sudo pt-query-digest /var/log/mysql/slow.log
 
 ### INDEX を貼る
 
-```
+```sql
 $ mysql
 ## tableの詳細確認
 show create table table_name;
@@ -477,24 +477,24 @@ DBのHostの設定をDBのHostにしたいサーバーのPrivateIPアドレス�
 ### 導入
 1. [こんな感じにアプリに入れる](https://github.com/hoge-times/isucon9-qualify-20240217/pull/5)
 2. ベンチ実行後､Initializeが終わったタイミングで以下のコマンド事項
-   ```
+   ```bash
     $ go tool pprof http://localhost:6060/debug/pprof/profile?seconds=30
    ```
 3. ローカルでファイルを展開する
-   ```
+   ```bash
     $ go tool pprof -http 127.0.0.1:9090 ./pprof.isucari.samples.cpu.002.pb.gz
    ```
 
 ## log
 
-```
+```bash
 $ journalctl -xe | grep  isucari
 # systemd
 $ sudo tail -n 1000 /var/log/syslog | grep hogehoge
 ```
 
 ## (練習用)Goのバージョンを変える
-```
+```bash
 goのパスを確認しておく
 $ which go
 $ printenv | grep GOROOT
