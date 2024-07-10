@@ -193,6 +193,99 @@ sudo nginx -t
 - [色々まとまっている](https://kazegahukeba.hatenablog.com/entry/2019/09/13/015113)
 
 ```
+user www-data;
+worker_processes auto;
+pid /run/nginx.pid;
+include /etc/nginx/modules-enabled/*.conf;
+
+worker_cpu_affinity auto;
+
+# nginx worker の設定
+worker_rlimit_nofile  32768;
+events {
+  worker_connections  8096;  # 128より大きくするなら、 max connection 数を増やす必要あり。さらに大きくするなら worker_rlimit_nofile も大きくする（file descriptor数の制限を緩める)
+  multi_accept on;         # 複数acceptを有効化する
+  use epoll; # 待受の利用メソッドを指定（基本は自動指定されてるはず）
+}
+
+http {
+	##
+	# SSL Settings
+	##
+
+	ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3; # Dropping SSLv3, ref: POODLE
+	ssl_prefer_server_ciphers on;
+
+	##
+	# Logging Settings
+	##
+
+	error_log /var/log/nginx/error.log;
+    log_format ltsv "time:$time_local"
+      "\thost:$remote_addr"
+      "\tforwardedfor:$http_x_forwarded_for"
+      "\treq:$request"
+      "\tmethod:$request_method"
+      "\turi:$request_uri"
+      "\tstatus:$status"
+      "\tsize:$body_bytes_sent"
+      "\treferer:$http_referer"
+      "\tua:$http_user_agent"
+      "\treqtime:$request_time"
+      "\truntime:$upstream_http_x_runtime"
+      "\tapptime:$upstream_response_time"
+      "\tcache:$upstream_http_x_cache"
+      "\tvhost:$host";  # alp 用の log format
+    access_log  /var/log/nginx/access.log ltsv;
+
+
+  	gzip on;
+
+	  # gzip_vary on;
+	  # gzip_proxied any;
+	  # gzip_comp_level 6;
+	  # gzip_buffers 16 8k;
+	  # gzip_http_version 1.1;
+	  # gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
+
+    # 基本設定
+    sendfile    on;
+    tcp_nopush  on;
+    tcp_nodelay on;
+    types_hash_max_size 2048;
+    server_tokens    off;
+    open_file_cache max=100 inactive=20s;
+
+    proxy_buffers 100 32k;
+    proxy_buffer_size 8k;
+
+    # mime.type の設定
+    include       /etc/nginx/mime.types;
+	   default_type application/octet-stream;
+
+    # Keepalive 設定
+    # ベンチマークとの相性次第ではkeepalive off;にしたほうがいい
+    # keepalive off;
+
+    keepalive_requests 1000000;
+    keepalive_timeout 600s;
+
+    http2_max_requests 1000000;
+    http2_recv_timeout 600s;
+
+    # オリジンから来るCache-Controlを無視する必要があるなら。。。
+    #proxy_ignore_headers Cache-Control;
+
+	##
+	# Virtual Host Configs
+	##
+
+	include /etc/nginx/conf.d/*.conf;
+	include /etc/nginx/sites-enabled/*;
+}
+```
+
+```
 $ wget https://github.com/tkuchiki/alp/releases/download/v1.0.21/alp_linux_amd64.zip
 $ unzip alp_linux_amd64.zip
 $ sudo install ./alp /usr/local/bin
