@@ -220,9 +220,6 @@ http {
 	# Logging Settings
 	##
 
-        error_log /var/log/nginx/error.log;
-        access_log  /var/log/nginx/access.log ltsv;
-
         log_format ltsv
           "time:$time_local"
           "\thost:$remote_addr"
@@ -239,6 +236,10 @@ http {
           "\tapptime:$upstream_response_time"
           "\tcache:$upstream_http_x_cache"
           "\tvhost:$host";  # alp 用の log format
+
+        
+        error_log /var/log/nginx/error.log;
+        access_log  /var/log/nginx/access.log ltsv;
 
   	gzip on;
 
