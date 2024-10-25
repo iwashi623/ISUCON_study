@@ -489,6 +489,7 @@ DBのHostの設定をDBのHostにしたいサーバーのPrivateIPアドレス�
 
 ```bash
 $ journalctl -xe | grep  isucari
+$ sudo journalctl -u isuports.service -b
 # systemd
 $ sudo tail -n 1000 /var/log/syslog | grep hogehoge
 ```
