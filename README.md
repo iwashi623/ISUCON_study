@@ -84,6 +84,11 @@ $ vi ~/.gitconfig
  $ free -m
 ```
 
+- ストレージ
+```bash
+ $ df -hT
+```
+
 - サービス
 
 ```bash
