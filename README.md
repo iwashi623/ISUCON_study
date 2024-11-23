@@ -363,6 +363,27 @@ if ($http_user_agent ~* ^isubot ) {
 }
 ```
 
+### 特定のパスだけ､別のホストに流す
+```bash
+map $request_method$request_uri $backend {
+    default          http://127.0.0.1:8000;
+    ~^POST/login$    http://172.31.26.130:8000;
+}
+
+server {
+    listen 443 ssl;
+    server_name isucari.*;
+
+    ssl_certificate /etc/nginx/ssl/fullchain.pem;
+    ssl_certificate_key /etc/nginx/ssl/key.pem;
+
+    location / {
+        proxy_set_header Host $http_host;
+        proxy_pass $backend;
+    }
+}
+```
+
 ## MySQL
 
 ### スキーマの確認
