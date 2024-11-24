@@ -90,7 +90,6 @@ $ vi ~/.gitconfig
 ```
 
 - サービス
-
 ```bash
  $ systemctl list-units --type=service
 ```
@@ -114,7 +113,6 @@ $ scp -r isucon@<IPアドレス>:/home/isucon/isuumo/webapp/mysql/db webapp/mysq
 ```
 
 ### 環境把握
-
 - htop インストール
 ```bash
 $ sudo apt install htop
