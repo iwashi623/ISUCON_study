@@ -467,6 +467,31 @@ ALTER TABLE posts ADD INDEX index_posts_on_created_at_updated_at(created_at, upd
 ALTER TABLE テーブル名 DROP INDEX インデックス名;
 ```
 
+### Trigger
+```sql
+	CREATE TRIGGER update_chair_total_distances AFTER INSERT ON chair_locations FOR EACH ROW
+	BEGIN
+		DECLARE distance INTEGER;
+
+		-- 最新の累計距離を計算
+		SET distance = IFNULL(
+			(SELECT ABS(NEW.latitude - latitude) + ABS(NEW.longitude - longitude)
+			FROM chair_locations
+			WHERE chair_id = NEW.chair_id
+			ORDER BY created_at DESC
+			LIMIT 1, 1),
+			0
+		);
+
+		-- 累計距離テーブルを更新または挿入
+		INSERT INTO chair_total_distances (chair_id, total_distance, updated_at)
+		VALUES (NEW.chair_id, distance, NEW.created_at)
+		ON DUPLICATE KEY UPDATE
+			total_distance = total_distance + VALUES(total_distance),
+			updated_at = VALUES(updated_at);
+	END;
+```
+
 ### DB分割
 #### 移行先DBホスト
 1. ユーザーと権限の追加
