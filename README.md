@@ -540,7 +540,10 @@ $ sudo journalctl -u isuports.service -b
 $ sudo journalctl -u isuports.service -b -r #逆順
 
 # systemd
+# 行数を固定して表示
 $ sudo tail -n 1000 /var/log/syslog | grep hogehoge
+# 流れてくるログをみる
+$ sudo tail -f /var/log/syslog
 ```
 
 ## (練習用)Goのバージョンを変える
