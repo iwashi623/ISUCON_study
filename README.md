@@ -142,6 +142,11 @@ $ sudo systemctl cat isucari.go.service
 sudo systemctl status nginx.service
 ```
 
+サービスを停止(再起動しても立ち上がらない)
+```bash
+sudo systemctl disable isuride-matcher
+```
+
 ### Systemd に環境変数を渡す
 
 ```bash
