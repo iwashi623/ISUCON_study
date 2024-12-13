@@ -440,11 +440,6 @@ $ now=`date +%Y%m%d-%H%M%S` && sudo mv /var/log/mysql/slow.log /var/log/mysql/sl
 - [pt-query-digest](https://nishinatoshiharu.com/percona-slowquerylog/)
 
 ```bash
-$ wget https://www.percona.com/downloads/percona-toolkit/3.0.10/binary/debian/xenial/x86_64/percona-toolkit_3.0.10-1.xenial_amd64.deb
-$ sudo apt-get install libdbd-mysql-perl libdbi-perl libio-socket-ssl-perl libnet-ssleay-perl libterm-readkey-perl
-$ sudo dpkg -i percona-toolkit_3.0.10-1.xenial_amd64.deb
-OR
-
 $ cd /usr/local/bin
 $ sudo curl -LO percona.com/get/pt-query-digest
 $ sudo chmod +x pt-query-digest
